@@ -8,8 +8,11 @@ COPY ./startup.sh /
 COPY ./create_ffmpeg_cmd.sh /
 COPY ./*.template /
 
+CMD ["mkdir", "/usr/share/nginx"]
+CMD ["mkdir", "/usr/share/nginx/html"]
+
 #copy any content we have created
-copy ./*.html /usr/share/nginx/html/
+#copy ./*.html /usr/share/nginx/html/
 #copy ./*.css /usr/share/nginx/html/
 #copy ./*.png /usr/share/nginx/html/
 #copy ./*.js /usr/share/nginx/html/
