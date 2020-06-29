@@ -6,7 +6,7 @@ RUN apk add --update nginx ffmpeg && rm -rf /var/cache/apk/* && mkdir /tmp/strea
 
 COPY ./startup.sh /
 COPY ./create_ffmpeg_cmd.sh /
-COPY ./viewer.template /
+COPY ./*.template /
 
 #copy any content we have created
 copy ./*.html /usr/share/nginx/html/

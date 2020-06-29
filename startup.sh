@@ -18,6 +18,7 @@ do
       cp viewer.template ${OUT}.html
       sed -i 's/<view_name>/'${OUT}'/g' ${OUT}.html
       mv ${OUT}.html /usr/share/nginx/html/
+      echo '<a href="/static/'${OUT}'.html">'${OUT}'</a><BR>' >>index_link.template
       COUNTER=0
       IN=""
       OUT=""
@@ -25,5 +26,12 @@ do
     fi
     COUNTER=$((COUNTER+1))
 done
+
+#create index.html with all links to video stream pages
+cat index_top.template >> index.html
+cat index_link.template >> index.html
+cat index_bottom.template >> index.html
+mv index.html /usr/share/nginx/html/
+rm index_link.template
 
 nginx -g "daemon off;"
