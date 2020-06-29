@@ -1,6 +1,7 @@
 #!/bin/sh
 
 INPUT=$PARAMETERS
+echo input: $INPUT  
 
 COUNTER=0
 IN=""
@@ -14,6 +15,9 @@ do
       OUT=$parameter
       echo "Starting ${OUT} stream"
       $(sh ./create_ffmpeg_cmd.sh ${IN} ${OUT}) &
+      cp viewer.template ${OUT}.html
+      sed -i 's/<view_name>/'${OUT}'/g' ${OUT}.html
+      mv ${OUT}.html /usr/share/nginx/html/
       COUNTER=0
       IN=""
       OUT=""

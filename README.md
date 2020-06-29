@@ -9,6 +9,8 @@ The HLS stream that chromecast accepts has some additional restrictions, such as
 
 Chromecast devices also don't seem to support HLS streams without an audio track, this image will also generate a dummy silent audio track if your original stream is lacking sound (Not uncommon for security cameras).
 
+Furthermore this version will also create html pages for each stream in the /static/ virtual directory which will leverage video.js to create a cross platform visulaization of the stream.  This works on most modern browser and mobile webkits.
+
 ### Running
 
 #### Build the image
@@ -38,6 +40,10 @@ The streams will be accessible on port 8080 and the resource will be the chosen 
 
 Example: if the address of the host is `192.168.1.100` and the name of the stream passed as a parameter was `driveway` you will find the HLS steam at `http://192.168.1.100:8080/driveway.m3u8`
 
+Cross browser html view go to 'http://192.168.1.100:8080/static/driveway.html
+
 ### Tips
 
 I was able to run multiple HLS streams on a Raspberry Pi 1, in order to that I needed to set the input stream from the cameras to use AAC and h264, in this case the container running ffmpeg could just use the `copy` command for the codecs instead of having to transcode it.
+
+
